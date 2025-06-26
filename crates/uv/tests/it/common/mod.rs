@@ -415,15 +415,11 @@ impl TestContext {
     /// returns resolved symlink). This breaks some snapshot tests, since we _don't_ want to
     /// resolve symlinks for user-provided paths.
     pub fn test_bucket_dir() -> PathBuf {
-        if let Some(test_dir) = env::var_os(EnvVars::UV_INTERNAL__TEST_DIR) {
-            test_dir.into()
-        } else {
-            std::env::temp_dir()
-                .canonicalize()
-                .expect("failed to canonicalize temp dir")
-                .join("uv")
-                .join("tests")
-        }
+        std::env::temp_dir()
+            .canonicalize()
+            .expect("failed to canonicalize temp dir")
+            .join("uv")
+            .join("tests")
     }
 
     /// Create a new test context with multiple Python versions.
