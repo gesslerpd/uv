@@ -416,7 +416,7 @@ impl TestContext {
     /// resolve symlinks for user-provided paths.
     pub fn test_bucket_dir() -> PathBuf {
         std::env::temp_dir()
-            .canonicalize()
+            .simple_canonicalize()
             .expect("failed to canonicalize temp dir")
             .join("uv")
             .join("tests")
